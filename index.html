@@ -1,1 +1,745 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>VELORA — Meet. Connect. Experience.</title> <style> :root{--bg:#090a0c;--panel:#15161b;--gold:#e8bd72;--text:#f8f5ee;--muted:#aaaab2} *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif} header{padding:20px;border-bottom:1px solid #333} nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap} .logo{font-size:25px;color:var(--gold);letter-spacing:4px;font-weight:bold} .tagline{display:block;font-size:10px;letter-spacing:1px;margin-top:4px} button{padding:12px 17px;border-radius:8px;border:1px solid #685536;color:white;background:transparent;cursor:pointer;font-weight:bold} .gold{background:var(--gold);color:#15110a;border:0} main{max-width:1100px;margin:auto;padding:25px 18px} .hero{padding:55px 0 45px} .eyebrow{color:var(--gold);letter-spacing:2px;font-size:12px} h1{font-family:Georgia,serif;font-size:clamp(42px,8vw,72px);line-height:1.05;margin:20px 0} h1 span,h2 span{color:var(--gold)} p{line-height:1.7} .muted{color:var(--muted)} .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px} .card,.formbox{background:var(--panel);border:1px solid #333;padding:22px;border-radius:12px} .card .icon{font-size:30px} section{margin-bottom:40px} .formbox{max-width:560px;margin:25px auto} form{display:grid;gap:14px} label{display:block;margin-bottom:7px;color:var(--muted);font-size:13px} input,select,textarea{width:100%;padding:13px;background:#0d0e12;border:1px solid #444;border-radius:7px;color:white;font:inherit} textarea{min-height:110px;resize:vertical} .status{display:none;padding:12px;border-radius:7px;overflow-wrap:anywhere;line-height:1.5} .hidden{display:none!important} footer{border-top:1px solid #333;padding:25px 18px;text-align:center;color:var(--muted);font-size:12px} @media(max-width:650px){.cards{grid-template-columns:1fr}.hero{padding-top:35px}} </style> </head> <body> <header> <nav> <div class="logo">VELORA<span class="tagline">Meet. Connect. Experience.</span></div> <div> <button id="loginNav">Log in</button> <button class="gold" id="signupNav">Join VELORA</button> <button id="profileNav" class="hidden">My Profile</button> <button id="logoutBtn" class="hidden">Log out</button> </div> </nav> </header> <main> <section class="hero"> <div class="eyebrow">PREMIUM SOCIAL EXPERIENCES</div> <h1>Find Your Perfect<br><span>Companion</span></h1> <p class="muted">Discover company for dinner, coffee, events and city experiences.</p> <button class="gold" id="heroSignup">Join VELORA</button> </section> <section> <h2>Explore <span>Experiences</span></h2> <div class="cards"> <div class="card"><div class="icon">🍽️</div><h3>Dinner & Coffee</h3><p class="muted">Meet for a meal or a relaxed conversation.</p></div> <div class="card"><div class="icon">🎉</div><h3>Events & Night Out</h3><p class="muted">Find company for public events.</p></div> <div class="card"><div class="icon">✈️</div><h3>Travel & City Tours</h3><p class="muted">Explore a city and discover new experiences.</p></div> </div> </section> <section> <h2>Your safety comes <span>first</span></h2> <div class="cards"> <div class="card"><h3>📸 Photo Review</h3><p class="muted">Companion profiles need at least three reviewed photos before public listing.</p></div> <div class="card"><h3>🪪 Identity Verification</h3><p class="muted">Profiles must remain private until identity verification is implemented.</p></div> <div class="card"><h3>🛡️ Adults Only</h3><p class="muted">VELORA is for adults aged 18 and over.</p></div> </div> </section> <section id="signupSection" class="hidden"> <div class="formbox"> <h2>Create <span>Account</span></h2> <form id="signupForm"> <div><label>Full Name</label><input name="name" required maxlength="100" autocomplete="name"></div> <div><label>Email</label><input name="email" type="email" required autocomplete="email"></div> <div><label>Password (minimum 12 characters)</label><input name="password" type="password" minlength="12" required autocomplete="new-password"></div> <div><label>Age (18+)</label><input name="age" type="number" min="18" max="100" required></div> <div><label>Account Type</label><select name="role"><option value="find">Find a companion</option><option value="offer">Offer companionship</option><option value="both">Both</option></select></div> <div><label>City</label><input name="city" maxlength="100"></div> <button class="gold" type="submit">Create Account</button> <div id="signupStatus" class="status" role="status"></div> </form> </div> </section> <section id="loginSection" class="hidden"> <div class="formbox"> <h2>Welcome <span>Back</span></h2> <form id="loginForm"> <div><label>Email</label><input name="email" type="email" required autocomplete="email"></div> <div><label>Password</label><input name="password" type="password" required autocomplete="current-password"></div> <button class="gold" type="submit">Log In</button> <div id="loginStatus" class="status" role="status"></div> </form> </div> </section> <section id="profileSection" class="hidden"> <div class="formbox"> <h2>My <span>Profile</span></h2> <p class="muted">Complete your profile. It will not be publicly listed until photo review and identity verification are securely implemented.</p> <form id="profileForm"> <div><label>Full Name</label><input name="full_name" required maxlength="100"></div> <div><label>Age (18+)</label><input name="age" type="number" min="18" max="100" required></div> <div><label>City</label><input name="city" maxlength="100"></div> <div><label>About Me</label><textarea name="bio" maxlength="500" required placeholder="Tell people about yourself"></textarea></div> <div><label>Experience Category</label> <select name="category"> <option>Dinner & Coffee</option><option>Night Out</option><option>Travel & Tours</option><option>Events & Parties</option><option>Dating & Social</option> </select></div> <button class="gold" type="submit">Save Profile</button> <div id="profileStatus" class="status" role="status"></div> </form> </div> </section> <section id="accountSection" class="hidden"> <div class="formbox"> <h2>You're <span>Signed In!</span></h2> <p id="accountEmail" class="muted"></p> <p class="muted">Create or update your profile using My Profile. Public listings, photo uploads, identity verification, bookings and payments are not activated yet.</p> <button class="gold" id="completeProfile">Create / Edit Profile</button> </div> </section> </main> <footer>© 2026 VELORA — Meet. Connect. Experience.<p>Adults 18+ only. Meet safely and protect your privacy.</p></footer> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <script> const SUPABASE_URL = "https://rsxndjabjvromjhxppjs.supabase.co"; const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_qhapPr8GPoGMaF495UjxIw_YC5MjAK3"; let db = null; let currentUser = null; function client(){ if(!window.supabase) throw new Error("Supabase library did not load. Refresh the page."); if(!db) db = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY); return db; } const sections = { signup:document.getElementById("signupSection"), login:document.getElementById("loginSection"), profile:document.getElementById("profileSection"), account:document.getElementById("accountSection") }; function openSection(name){ Object.values(sections).forEach(s=>s.classList.add("hidden")); if(name && sections[name]){ sections[name].classList.remove("hidden"); sections[name].scrollIntoView({behavior:"smooth",block:"start"}); } } function message(id,text,ok=false){ const el=document.getElementById(id); el.style.display="block"; el.style.background=ok?"#173022":"#382020"; el.style.color=ok?"#b5f2ce":"#ffd0d0"; el.textContent=text; } function updateUI(user){ currentUser=user||null; ["loginNav","signupNav","heroSignup"].forEach(id=>{ document.getElementById(id).classList.toggle("hidden",!!user); }); document.getElementById("logoutBtn").classList.toggle("hidden",!user); document.getElementById("profileNav").classList.toggle("hidden",!user); if(user){ document.getElementById("accountEmail").textContent="Signed in as "+user.email; openSection("account"); }else{ openSection(null); } } document.getElementById("signupNav").onclick=()=>openSection("signup"); document.getElementById("heroSignup").onclick=()=>openSection("signup"); document.getElementById("loginNav").onclick=()=>openSection("login"); document.getElementById("profileNav").onclick=()=>loadProfile(); document.getElementById("completeProfile").onclick=()=>loadProfile(); document.getElementById("signupForm").addEventListener("submit",async e=>{ e.preventDefault(); const form=e.currentTarget,button=form.querySelector('button[type="submit"]'); button.disabled=true; try{ const d=new FormData(form); const full_name=String(d.get("name")).trim(); const email=String(d.get("email")).trim().toLowerCase(); const password=String(d.get("password")); const age=Number(d.get("age")); const city=String(d.get("city")||"").trim(); const role=String(d.get("role")); if(age<18||age>100) throw new Error("VELORA is only for adults aged 18 and over."); if(password.length<12) throw new Error("Password must be at least 12 characters."); message("signupStatus","Creating your account...",true); const {data,error}=await client().auth.signUp({ email,password, options:{data:{full_name,age,city,role}} }); if(error) throw error; form.reset(); if(data.session){ updateUI(data.user); await saveProfile({full_name,age,city,role,bio:"",category:"Dinner & Coffee"}); message("profileStatus","Account created. Complete your profile below.",true); openSection("profile"); }else{ message("signupStatus","Registration started. Check your email, confirm your account, then log in.",true); } }catch(err){ message("signupStatus",err.message||"Signup failed."); }finally{button.disabled=false;} }); document.getElementById("loginForm").addEventListener("submit",async e=>{ e.preventDefault(); const form=e.currentTarget,button=form.querySelector('button[type="submit"]'); button.disabled=true; try{ const d=new FormData(form); const {data,error}=await client().auth.signInWithPassword({ email:String(d.get("email")).trim().toLowerCase(), password:String(d.get("password")) }); if(error) throw error; form.reset(); updateUI(data.user); await loadProfile(); }catch(err){ message("loginStatus",err.message||"Login failed."); }finally{button.disabled=false;} }); async function loadProfile(){ if(!currentUser){openSection("login");return;} openSection("profile"); const form=document.getElementById("profileForm"); const status=document.getElementById("profileStatus"); status.style.display="none"; try{ const {data,error}=await client().from("profiles") .select("*").eq("id",currentUser.id).maybeSingle(); if(error) throw error; if(data){ form.elements.full_name.value=data.full_name||currentUser.user_metadata?.full_name||""; form.elements.age.value=data.age||currentUser.user_metadata?.age||""; form.elements.city.value=data.city||currentUser.user_metadata?.city||""; form.elements.bio.value=data.bio||""; form.elements.category.value=data.category||"Dinner & Coffee"; }else{ form.elements.full_name.value=currentUser.user_metadata?.full_name||""; form.elements.age.value=currentUser.user_metadata?.age||""; form.elements.city.value=currentUser.user_metadata?.city||""; form.elements.bio.value=""; form.elements.category.value="Dinner & Coffee"; } }catch(err){ message("profileStatus","Could not load profile: "+err.message); } } async function saveProfile(p){ if(!currentUser) throw new Error("Please log in first."); if(Number(p.age)<18) throw new Error("VELORA is only for adults aged 18 and over."); const payload={ id:currentUser.id, full_name:String(p.full_name||"").trim(), age:Number(p.age), city:String(p.city||"").trim(), role:["find","offer","both"].includes(p.role)?p.role:"find", bio:String(p.bio||"").trim(), category:String(p.category||"Dinner & Coffee") }; const {error}=await client().from("profiles").upsert(payload,{onConflict:"id"}); if(error) throw error; } document.getElementById("profileForm").addEventListener("submit",async e=>{ e.preventDefault(); const form=e.currentTarget,button=form.querySelector('button[type="submit"]'); button.disabled=true; try{ const d=new FormData(form); await saveProfile({ full_name:d.get("full_name"), age:d.get("age"), city:d.get("city"), bio:d.get("bio"), category:d.get("category"), role:currentUser?.user_metadata?.role||"find" }); message("profileStatus","Profile saved successfully!",true); }catch(err){ message("profileStatus","Could not save profile: "+err.message); }finally{button.disabled=false;} }); document.getElementById("logoutBtn").onclick=async()=>{ try{ const {error}=await client().auth.signOut(); if(error) throw error; updateUI(null); }catch(err){alert(err.message||"Logout failed.");} }; (async()=>{ try{ const {data,error}=await client().auth.getSession(); if(!error) updateUI(data.session?.user||null); }catch(err){console.error("Initialization error:",err);} })(); </script> </body> </html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VELORA — Meet. Connect. Experience.</title>
+  <meta name="theme-color" content="#101018">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --bg: #101018;
+      --card: #1b1b28;
+      --gold: #e7bd79;
+      --text: #f7f3ed;
+      --muted: #b8b5c2;
+      --border: #353344;
+      --green: #9ce2b4;
+      --red: #ff9e9e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
+
+    .tagline { color: var(--muted); font-size: 12px; }
+
+    main {
+      width: min(900px, 100%);
+      margin: auto;
+      padding: 22px 16px 60px;
+    }
+
+    .hero { text-align: center; padding: 28px 0; }
+
+    h1 { font-size: clamp(30px, 7vw, 48px); line-height: 1.15; }
+
+    h2 { color: var(--gold); }
+
+    .muted { color: var(--muted); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #11111b;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea { min-height: 100px; resize: vertical; }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 17px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:disabled { opacity: .55; cursor: wait; }
+
+    .primary { background: var(--gold); color: #17131a; }
+    .secondary { background: #302d40; color: white; }
+    .danger { background: #492b34; color: white; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .actions button { flex: 1; }
+
+    .hidden { display: none !important; }
+
+    .notice {
+      margin: 14px 0;
+      padding: 12px;
+      border-radius: 10px;
+      background: #252438;
+      overflow-wrap: anywhere;
+    }
+
+    .success { color: var(--green); }
+    .error { color: var(--red); }
+
+    .photo-grid, .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .photo-item, .person {
+      background: #11111b;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      min-width: 0;
+    }
+
+    .photo-item img, .person img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .photo-item button { width: 100%; margin-top: 8px; }
+
+    .person h3 { margin-bottom: 4px; }
+
+    .small { font-size: 12px; color: var(--muted); }
+
+    footer {
+      text-align: center;
+      padding: 30px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div>
+    <div class="logo">VELORA</div>
+    <div class="tagline">Meet. Connect. Experience.</div>
+  </div>
+  <button id="logoutBtn" class="secondary hidden">Log out</button>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Real Connections.<br><span style="color:var(--gold)">Memorable Experiences.</span></h1>
+    <p class="muted">
+      Meet people for dinner, coffee, events, travel and social experiences.
+    </p>
+    <p class="small">VELORA is for adults aged 18 and above.</p>
+  </section>
+
+  <div id="message" class="notice hidden" role="status"></div>
+
+  <!-- LOGIN / SIGNUP -->
+  <section id="authSection" class="card">
+    <h2>Welcome to VELORA</h2>
+    <p class="muted">Create an account or log in to continue.</p>
+
+    <form id="authForm">
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="email" required>
+
+      <label for="password">Password (at least 6 characters)</label>
+      <input id="password" type="password"
+             autocomplete="current-password" minlength="6" required>
+
+      <div class="actions">
+        <button class="primary" type="submit" id="signupBtn">
+          Create account
+        </button>
+        <button class="secondary" type="button" id="loginBtn">
+          Log in
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profileSection" class="card hidden">
+    <h2>Your Profile</h2>
+    <p class="muted">Complete your profile, then save it.</p>
+
+    <form id="profileForm">
+      <label for="fullName">Full name</label>
+      <input id="fullName" maxlength="100" required>
+
+      <label for="age">Age (18+)</label>
+      <input id="age" type="number" min="18" max="110" required>
+
+      <label for="city">City</label>
+      <input id="city" maxlength="100" required>
+
+      <label for="role">I want to</label>
+      <select id="role" required>
+        <option value="guest">Meet people / find experiences</option>
+        <option value="companion">Offer companionship</option>
+        <option value="both">Both</option>
+      </select>
+
+      <label for="category">Preferred experience</label>
+      <select id="category" required>
+        <option>Dinner & Coffee</option>
+        <option>Night Out</option>
+        <option>Tours & Travel</option>
+        <option>Events & Parties</option>
+        <option>Dating & Social</option>
+      </select>
+
+      <label for="bio">About you</label>
+      <textarea id="bio" maxlength="500"
+        placeholder="Tell people a little about yourself..."></textarea>
+
+      <button id="saveProfileBtn" class="primary" type="submit"
+        style="width:100%;margin-top:18px">
+        Save profile
+      </button>
+    </form>
+  </section>
+
+  <!-- THIS SECTION APPEARS AFTER PROFILE SAVE -->
+  <section id="photosSection" class="card hidden">
+    <h2>Step 2 — Add Your Photos</h2>
+    <p>Upload at least <strong>3 photos</strong> before requesting profile review. You can add up to 6.</p>
+
+    <label for="photoInput">Choose photos (JPG, PNG or WebP)</label>
+    <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+
+    <p class="small">Maximum 5 MB per photo. Use your own photos and only upload images you have permission to use.</p>
+
+    <div id="photoMessage" class="notice hidden" role="status"></div>
+    <div id="photoGrid" class="photo-grid"></div>
+
+    <p id="photoCount" class="muted">Photos uploaded: 0 / 3 minimum</p>
+
+    <button id="reviewBtn" class="primary" style="width:100%" disabled>
+      Request profile review
+    </button>
+
+    <p class="small">
+      Profiles are not publicly listed until verification has actually been completed.
+    </p>
+  </section>
+
+  <!-- DISCOVER -->
+  <section id="discoverSection" class="card hidden">
+    <h2>Discover People</h2>
+    <p class="muted">Only profiles marked as verified by your review process appear here.</p>
+    <button id="discoverBtn" class="secondary">Load verified profiles</button>
+    <div id="peopleGrid" class="people-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <strong>VELORA</strong><br>
+  Meet. Connect. Experience.<br>
+  <span class="small">Adults 18+ only. Treat others with respect.</span>
+</footer>
+
+<script>
+(() => {
+  // Supabase project configuration
+  const SUPABASE_URL = "https://rsxndjabjvromjhxppjs.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_qhapPr8GPoGMaF495UjxIw_YC5MjAK3";
+
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const $ = id => document.getElementById(id);
+
+  let currentUser = null;
+  let uploadedPhotos = [];
+
+  function showMessage(text, type = "success") {
+    const el = $("message");
+    el.textContent = text;
+    el.className = "notice " + type;
+    el.classList.remove("hidden");
+  }
+
+  function showPhotoMessage(text, type = "success") {
+    const el = $("photoMessage");
+    el.textContent = text;
+    el.className = "notice " + type;
+    el.classList.remove("hidden");
+  }
+
+  function setBusy(button, busy, text) {
+    if (busy) {
+      button.dataset.originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = text;
+    } else {
+      button.disabled = false;
+      button.textContent = button.dataset.originalText || text;
+    }
+  }
+
+  function setLoggedIn(user) {
+    currentUser = user;
+    $("authSection").classList.toggle("hidden", !!user);
+    $("profileSection").classList.toggle("hidden", !user);
+    $("logoutBtn").classList.toggle("hidden", !user);
+    $("photosSection").classList.add("hidden");
+    $("discoverSection").classList.add("hidden");
+  }
+
+  async function loadProfile() {
+    if (!currentUser) return;
+
+    const { data, error } = await db
+      .from("profiles")
+      .select("id,display_name,full_name,age,city,role,bio,category")
+      .eq("id", currentUser.id)
+      .maybeSingle();
+
+    if (error) {
+      showMessage("Profile read error: " + error.message, "error");
+      return;
+    }
+
+    if (data) {
+      $("fullName").value = data.full_name || data.display_name || "";
+      $("age").value = data.age || "";
+      $("city").value = data.city || "";
+      $("role").value = data.role || "guest";
+      $("bio").value = data.bio || "";
+      $("category").value = data.category || "Dinner & Coffee";
+    }
+
+    // Keep next steps visible, even if the profile already exists.
+    $("photosSection").classList.remove("hidden");
+    $("discoverSection").classList.remove("hidden");
+    await loadPhotos();
+  }
+
+  async function authAction(mode) {
+    const email = $("email").value.trim();
+    const password = $("password").value;
+
+    if (!email || password.length < 6) {
+      showMessage("Enter a valid email and a password of at least 6 characters.", "error");
+      return;
+    }
+
+    const button = mode === "signup" ? $("signupBtn") : $("loginBtn");
+    setBusy(button, true, "Please wait...");
+
+    try {
+      let result;
+
+      if (mode === "signup") {
+        result = await db.auth.signUp({ email, password });
+      } else {
+        result = await db.auth.signInWithPassword({ email, password });
+      }
+
+      if (result.error) throw result.error;
+
+      if (mode === "signup" && !result.data.session) {
+        showMessage(
+          "Account created. Check your email for the confirmation link, then log in.",
+          "success"
+        );
+        return;
+      }
+
+      currentUser = result.data.user;
+      setLoggedIn(currentUser);
+      showMessage("Logged in successfully.");
+      await loadProfile();
+
+    } catch (error) {
+      showMessage(error.message || "Authentication failed.", "error");
+    } finally {
+      setBusy(button, false, mode === "signup" ? "Create account" : "Log in");
+    }
+  }
+
+  $("authForm").addEventListener("submit", event => {
+    event.preventDefault();
+    authAction("signup");
+  });
+
+  $("loginBtn").addEventListener("click", () => authAction("login"));
+
+  $("logoutBtn").addEventListener("click", async () => {
+    const { error } = await db.auth.signOut();
+
+    if (error) {
+      showMessage(error.message, "error");
+      return;
+    }
+
+    currentUser = null;
+    uploadedPhotos = [];
+    setLoggedIn(null);
+    showMessage("You have logged out.");
+  });
+
+  // Save profile, then explicitly reveal the next step.
+  $("profileForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (!currentUser) {
+      showMessage("Please log in first.", "error");
+      return;
+    }
+
+    const fullName = $("fullName").value.trim();
+    const age = Number($("age").value);
+    const city = $("city").value.trim();
+
+    if (!fullName || !city || !Number.isInteger(age) || age < 18) {
+      showMessage("Enter your name, city and a valid age of 18 or above.", "error");
+      return;
+    }
+
+    const button = $("saveProfileBtn");
+    setBusy(button, true, "Saving...");
+
+    try {
+      const payload = {
+        id: currentUser.id,
+        display_name: fullName,
+        full_name: fullName,
+        age,
+        city,
+        role: $("role").value,
+        bio: $("bio").value.trim(),
+        category: $("category").value
+      };
+
+      const { error } = await db
+        .from("profiles")
+        .upsert(payload, { onConflict: "id" });
+
+      if (error) throw error;
+
+      showMessage("Profile saved successfully! Now upload at least 3 photos below.");
+
+      // Force the next step to appear and scroll to it.
+      $("photosSection").classList.remove("hidden");
+      $("discoverSection").classList.remove("hidden");
+      $("photosSection").scrollIntoView({ behavior: "smooth", block: "start" });
+
+      await loadPhotos();
+
+    } catch (error) {
+      showMessage("Could not save profile: " + error.message, "error");
+    } finally {
+      setBusy(button, false, "Save profile");
+    }
+  });
+
+  async function loadPhotos() {
+    if (!currentUser) return;
+
+    try {
+      const { data, error } = await db
+        .from("profile_photos")
+        .select("id,user_id,photo_path,created_at")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending: true });
+
+      if (error) throw error;
+
+      uploadedPhotos = data || [];
+      await renderPhotos();
+
+    } catch (error) {
+      showPhotoMessage(
+        "Could not load photos. Check the profile_photos table and its permissions. " +
+        error.message,
+        "error"
+      );
+    }
+  }
+
+  async function renderPhotos() {
+    const grid = $("photoGrid");
+    grid.replaceChildren();
+
+    for (const photo of uploadedPhotos) {
+      const { data, error } = await db.storage
+        .from("profile-photos")
+        .createSignedUrl(photo.photo_path, 3600);
+
+      const item = document.createElement("div");
+      item.className = "photo-item";
+
+      if (!error && data && data.signedUrl) {
+        const img = document.createElement("img");
+        img.src = data.signedUrl;
+        img.alt = "Your profile photo";
+        item.appendChild(img);
+      } else {
+        const fallback = document.createElement("p");
+        fallback.textContent = "Photo preview unavailable";
+        item.appendChild(fallback);
+      }
+
+      const remove = document.createElement("button");
+      remove.className = "danger";
+      remove.textContent = "Remove photo";
+      remove.addEventListener("click", () => deletePhoto(photo));
+      item.appendChild(remove);
+
+      grid.appendChild(item);
+    }
+
+    $("photoCount").textContent =
+      "Photos uploaded: " + uploadedPhotos.length + " / 3 minimum";
+
+    $("reviewBtn").disabled = uploadedPhotos.length < 3;
+  }
+
+  $("photoInput").addEventListener("change", async event => {
+    if (!currentUser) {
+      showPhotoMessage("Please log in first.", "error");
+      return;
+    }
+
+    const files = Array.from(event.target.files || []);
+    event.target.value = "";
+
+    if (!files.length) return;
+
+    if (uploadedPhotos.length + files.length > 6) {
+      showPhotoMessage("You can upload up to 6 photos total.", "error");
+      return;
+    }
+
+    for (const file of files) {
+      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+        showPhotoMessage("Use JPG, PNG or WebP images only.", "error");
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        showPhotoMessage("Each photo must be 5 MB or smaller.", "error");
+        return;
+      }
+    }
+
+    showPhotoMessage("Uploading photos...");
+
+    try {
+      for (const file of files) {
+        const ext = file.type === "image/png" ? "png" :
+                    file.type === "image/webp" ? "webp" : "jpg";
+
+        const path = currentUser.id + "/" + crypto.randomUUID() + "." + ext;
+
+        const { error: uploadError } = await db.storage
+          .from("profile-photos")
+          .upload(path, file, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: file.type
+          });
+
+        if (uploadError) throw uploadError;
+
+        const { error: recordError } = await db
+          .from("profile_photos")
+          .insert({
+            user_id: currentUser.id,
+            photo_path: path
+          });
+
+        if (recordError) {
+          // Avoid leaving an untracked file if the database insert fails.
+          await db.storage.from("profile-photos").remove([path]);
+          throw recordError;
+        }
+      }
+
+      showPhotoMessage("Photos uploaded successfully.");
+      await loadPhotos();
+
+    } catch (error) {
+      showPhotoMessage("Photo upload failed: " + error.message, "error");
+    }
+  });
+
+  async function deletePhoto(photo) {
+    if (!confirm("Remove this photo?")) return;
+
+    try {
+      const { error: storageError } = await db.storage
+        .from("profile-photos")
+        .remove([photo.photo_path]);
+
+      if (storageError) throw storageError;
+
+      const { error: recordError } = await db
+        .from("profile_photos")
+        .delete()
+        .eq("id", photo.id)
+        .eq("user_id", currentUser.id);
+
+      if (recordError) throw recordError;
+
+      showPhotoMessage("Photo removed.");
+      await loadPhotos();
+
+    } catch (error) {
+      showPhotoMessage("Could not remove photo: " + error.message, "error");
+    }
+  }
+
+  // This only creates a pending status. It does not perform identity verification.
+  $("reviewBtn").addEventListener("click", async () => {
+    if (uploadedPhotos.length < 3) {
+      showPhotoMessage("Upload at least 3 photos first.", "error");
+      return;
+    }
+
+    try {
+      const { error } = await db
+        .from("profiles")
+        .update({ verification_status: "pending" })
+        .eq("id", currentUser.id);
+
+      if (error) throw error;
+
+      showPhotoMessage(
+        "Review status set to pending. An authorised reviewer must verify your identity before your profile becomes public."
+      );
+
+    } catch (error) {
+      showPhotoMessage(
+        "Could not submit review status. Check that the verification_status column exists. " +
+        error.message,
+        "error"
+      );
+    }
+  });
+
+  $("discoverBtn").addEventListener("click", async () => {
+    const grid = $("peopleGrid");
+    grid.replaceChildren();
+
+    try {
+      const { data, error } = await db
+        .from("profiles")
+        .select("id,display_name,age,city,bio,category")
+        .eq("verification_status", "verified")
+        .limit(30);
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        grid.textContent = "No verified profiles available yet.";
+        return;
+      }
+
+      for (const person of data) {
+        const card = document.createElement("article");
+        card.className = "person";
+
+        const name = document.createElement("h3");
+        name.textContent = person.display_name || "VELORA Member";
+        card.appendChild(name);
+
+        const details = document.createElement("p");
+        details.textContent = (person.age || "") +
+          (person.city ? " · " + person.city : "");
+        card.appendChild(details);
+
+        const bio = document.createElement("p");
+        bio.textContent = person.bio || "";
+        card.appendChild(bio);
+
+        const category = document.createElement("p");
+        category.className = "small";
+        category.textContent = person.category || "";
+        card.appendChild(category);
+
+        grid.appendChild(card);
+      }
+
+    } catch (error) {
+      showMessage("Could not load verified profiles: " + error.message, "error");
+    }
+  });
+
+  async function start() {
+    const { data, error } = await db.auth.getSession();
+
+    if (error) {
+      showMessage("Could not check login session: " + error.message, "error");
+      return;
+    }
+
+    const user = data.session ? data.session.user : null;
+    setLoggedIn(user);
+
+    if (user) {
+      await loadProfile();
+    }
+  }
+
+  db.auth.onAuthStateChange((_event, session) => {
+    const user = session ? session.user : null;
+    setLoggedIn(user);
+  });
+
+  start();
+})();
+</script>
+</body>
+  </html>
