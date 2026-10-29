@@ -1,261 +1,500 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VELORA — Meet. Connect. Experience.</title>
+
 <style>
-:root{--bg:#090a0c;--panel:#14151a;--gold:#e8bd72;--muted:#a9abb3;--white:#f8f5ee}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--white);font:15px system-ui,sans-serif}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1150px;padding:0 22px;margin:auto}
-header{border-bottom:1px solid #292a30;padding:18px 0}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{color:var(--gold);font-size:24px;letter-spacing:5px;font-weight:800}
-.tag{display:block;font-size:10px;letter-spacing:1px}
-.btn{border:1px solid #6a5538;border-radius:9px;padding:11px 16px;background:transparent;color:white;cursor:pointer;font-weight:650}
-.gold{background:linear-gradient(120deg,#f5d69a,#c89443);border:0;color:#18120a}
-.hero{padding:76px 0 42px;background:radial-gradient(ellipse at 80% 10%,#473323,transparent 45%),linear-gradient(120deg,#090a0c,#171316)}
-.eyebrow{color:var(--gold);letter-spacing:2px;font-size:11px;font-weight:800}
-.hero h1{font:clamp(42px,7vw,72px)/1.02 Georgia,serif;margin:18px 0}
-.hero h1 span,h2 span{color:var(--gold)}
-.hero p{color:#d1cfc9}
-.search{margin-top:30px;padding:13px;border:1px solid #34343b;border-radius:14px;background:#0c0d10;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px}
-.search label,.form label{display:block;font-size:12px;color:var(--muted);margin-bottom:7px}
-.search select,.search input,.form input,.form select{width:100%;padding:12px;border:1px solid #383941;background:#111217;color:white;border-radius:8px}
-.section{padding:34px 0;border-bottom:1px solid #25262b}
-.section h2{font:30px Georgia,serif;margin:0 0 8px}
-.muted{color:var(--muted);font-size:13px}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-.tile{border:1px solid #38343a;border-radius:12px;padding:20px;background:linear-gradient(145deg,#201d1e,#111217)}
-.tile b{display:block;margin:10px 0}
-.tile span{font-size:27px}
-.hidden{display:none!important}
-.box{max-width:530px;margin:25px auto;padding:24px;background:var(--panel);border:1px solid #4c4030;border-radius:14px}
-.form{display:grid;gap:13px}
-.form small{color:var(--muted);line-height:1.5}
-.status{padding:12px;background:#17291f;color:#b5f2ce;border-radius:8px;display:none;line-height:1.45}
-.footer{padding:28px 0;color:var(--muted);font-size:12px}
-.top-actions{display:flex;gap:8px;align-items:center}
-@media(max-width:720px){
-.search{grid-template-columns:1fr 1fr}
-.search .btn{grid-column:span 2}
-.tiles{grid-template-columns:1fr}
-.hero{padding-top:48px}
-.logo{font-size:20px}
-.wrap{padding:0 15px}
+:root {
+  --bg:#090a0c;
+  --panel:#15161b;
+  --gold:#e8bd72;
+  --text:#f8f5ee;
+  --muted:#aaaab2;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+header {
+  padding:20px;
+  border-bottom:1px solid #333;
+}
+nav {
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.logo {
+  font-size:25px;
+  color:var(--gold);
+  letter-spacing:4px;
+  font-weight:bold;
+}
+.tagline {
+  display:block;
+  font-size:10px;
+  letter-spacing:1px;
+  margin-top:4px;
+}
+button {
+  padding:12px 17px;
+  border-radius:8px;
+  border:1px solid #685536;
+  color:white;
+  background:transparent;
+  cursor:pointer;
+  font-weight:bold;
+}
+.gold {
+  background:var(--gold);
+  color:#15110a;
+  border:0;
+}
+main {
+  max-width:1100px;
+  margin:auto;
+  padding:25px 18px;
+}
+.hero {
+  padding:65px 0 45px;
+}
+.eyebrow {
+  color:var(--gold);
+  letter-spacing:2px;
+  font-size:12px;
+}
+h1 {
+  font-family:Georgia,serif;
+  font-size:clamp(42px,8vw,72px);
+  line-height:1.05;
+  margin:20px 0;
+}
+h1 span,h2 span {color:var(--gold)}
+p {line-height:1.7}
+.muted {color:var(--muted)}
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:25px;
+}
+.card,.formbox {
+  background:var(--panel);
+  border:1px solid #333;
+  padding:22px;
+  border-radius:12px;
+}
+.card .icon {font-size:30px}
+section {margin-bottom:45px}
+.formbox {
+  max-width:520px;
+  margin:25px auto;
+}
+form {
+  display:grid;
+  gap:14px;
+}
+label {
+  display:block;
+  margin-bottom:7px;
+  color:var(--muted);
+  font-size:13px;
+}
+input,select {
+  width:100%;
+  padding:13px;
+  background:#0d0e12;
+  border:1px solid #444;
+  border-radius:7px;
+  color:white;
+}
+.status {
+  display:none;
+  padding:12px;
+  border-radius:7px;
+  background:#292018;
+  overflow-wrap:anywhere;
+  line-height:1.5;
+}
+.hidden {display:none!important}
+footer {
+  border-top:1px solid #333;
+  padding:25px 18px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+@media(max-width:650px) {
+  .cards {grid-template-columns:1fr}
+  nav {flex-wrap:wrap}
+  .hero {padding-top:35px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="wrap nav">
-<a href="/" class="logo">V<span style="font-size:15px">ELORA</span><span class="tag">Meet. Connect. Experience.</span></a>
-<div class="top-actions">
-<button class="btn" type="button" onclick="show('login')">Log in</button>
-<button class="btn gold" type="button" onclick="show('signup')">Join VELORA</button>
-<button id="logoutButton" class="btn hidden" type="button">Log out</button>
-</div>
-</div>
+<nav>
+  <div class="logo">
+    VELORA
+    <span class="tagline">Meet. Connect. Experience.</span>
+  </div>
+
+  <div>
+    <button id="loginNav">Log in</button>
+    <button class="gold" id="signupNav">Join VELORA</button>
+    <button id="logoutBtn" class="hidden">Log out</button>
+  </div>
+</nav>
 </header>
 
+<main>
+
 <section class="hero">
-<div class="wrap">
-<div class="eyebrow">PREMIUM SOCIAL COMPANION BOOKING</div>
-<h1>Find Your Perfect<br><span>Companion</span></h1>
-<p>Discover company for dinner, coffee, events and city experiences.</p>
-<div class="search">
-<div><label>LOOKING FOR</label><select><option>Anyone</option><option>Female</option><option>Male</option></select></div>
-<div><label>LOCATION</label><input placeholder="City or country"></div>
-<div><label>EXPERIENCE</label><select><option>Dinner & Coffee</option><option>Dating & Social</option><option>Night Out</option><option>Travel & Tours</option><option>Events & Parties</option></select></div>
-<button class="btn gold" type="button" onclick="alert('Search will activate after verified profiles are approved.')">Find companions</button>
-</div>
-</div>
+  <div class="eyebrow">PREMIUM SOCIAL EXPERIENCES</div>
+  <h1>Find Your Perfect<br><span>Companion</span></h1>
+  <p class="muted">
+    Discover company for dinner, coffee, events and city experiences.
+  </p>
+  <button class="gold" id="heroSignup">Join VELORA</button>
 </section>
 
-<section class="section">
-<div class="wrap">
-<h2>Explore <span>Experiences</span></h2>
-<p class="muted">Choose the kind of social outing you have in mind.</p>
-<div class="tiles">
-<div class="tile"><span>🍽️</span><b>Dinner & Coffee</b><p class="muted">Meet for a meal or a relaxed conversation.</p></div>
-<div class="tile"><span>🎉</span><b>Night Out & Events</b><p class="muted">Find company for public events and celebrations.</p></div>
-<div class="tile"><span>✈️</span><b>Travel & City Tours</b><p class="muted">Explore a city with a local companion.</p></div>
-</div>
-</div>
+<section>
+  <h2>Explore <span>Experiences</span></h2>
+  <p class="muted">Choose your next social experience.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🍽️</div>
+      <h3>Dinner & Coffee</h3>
+      <p class="muted">Meet someone for dinner or a relaxed conversation.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎉</div>
+      <h3>Events & Night Out</h3>
+      <p class="muted">Find company for events and celebrations.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">✈️</div>
+      <h3>Travel & City Tours</h3>
+      <p class="muted">Explore places and discover new experiences.</p>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-<div class="wrap">
-<h2>Trust comes <span>first</span></h2>
-<div class="tiles">
-<div class="tile"><span>📸</span><b>Photo requirement</b><p class="muted">Profiles must have at least three photos before review.</p></div>
-<div class="tile"><span>🪪</span><b>Identity verification</b><p class="muted">Public listings stay disabled until verification and moderation are implemented.</p></div>
-<div class="tile"><span>🛡️</span><b>Adults only</b><p class="muted">18+ platform with reporting, privacy and safety rules.</p></div>
-</div>
-</div>
+<section>
+  <h2>Your safety comes <span>first</span></h2>
+  <div class="cards">
+    <div class="card">
+      <h3>📸 Three Photos</h3>
+      <p class="muted">Companion profiles require at least three photos.</p>
+    </div>
+    <div class="card">
+      <h3>🪪 Identity Verification</h3>
+      <p class="muted">Identity checks must be completed before public listing.</p>
+    </div>
+    <div class="card">
+      <h3>🛡️ Adults Only</h3>
+      <p class="muted">VELORA is exclusively for people aged 18 and over.</p>
+    </div>
+  </div>
 </section>
 
-<section id="signup" class="section hidden">
-<div class="wrap"><div class="box">
-<h2>Create account</h2>
-<form id="signupForm" class="form">
-<div><label>Full name</label><input name="name" required maxlength="100" autocomplete="name"></div>
-<div><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
-<div><label>Password (at least 12 characters)</label><input name="password" type="password" minlength="12" required autocomplete="new-password"></div>
-<div><label>Age (18+)</label><input name="age" type="number" min="18" max="100" required></div>
-<div><label>Account type</label><select name="role"><option value="find">Find a companion</option><option value="offer">Offer companionship</option><option value="both">Both</option></select></div>
-<div><label>City</label><input name="city" maxlength="100" autocomplete="address-level2"></div>
-<button class="btn gold" type="submit">Create account</button>
-<div class="status" id="signupStatus" role="status"></div>
-<small>Email confirmation may be required. Photo uploads and identity verification are not enabled yet.</small>
-</form>
-</div></div>
+<section id="signupSection" class="hidden">
+  <div class="formbox">
+    <h2>Create Account</h2>
+
+    <form id="signupForm">
+      <div>
+        <label>Full Name</label>
+        <input name="name" required maxlength="100" autocomplete="name">
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input name="email" type="email" required autocomplete="email">
+      </div>
+
+      <div>
+        <label>Password (at least 12 characters)</label>
+        <input name="password" type="password" minlength="12"
+          required autocomplete="new-password">
+      </div>
+
+      <div>
+        <label>Age (18+)</label>
+        <input name="age" type="number" min="18" max="100" required>
+      </div>
+
+      <div>
+        <label>Account Type</label>
+        <select name="role">
+          <option value="find">Find a companion</option>
+          <option value="offer">Offer companionship</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+
+      <div>
+        <label>City</label>
+        <input name="city" maxlength="100">
+      </div>
+
+      <button class="gold" type="submit">Create Account</button>
+      <div id="signupStatus" class="status" role="status"></div>
+    </form>
+  </div>
 </section>
 
-<section id="login" class="section hidden">
-<div class="wrap"><div class="box">
-<h2>Log in</h2>
-<form id="loginForm" class="form">
-<div><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
-<div><label>Password</label><input name="password" type="password" required autocomplete="current-password"></div>
-<button class="btn gold" type="submit">Log in</button>
-<div class="status" id="loginStatus" role="status"></div>
-</form>
-</div></div>
+<section id="loginSection" class="hidden">
+  <div class="formbox">
+    <h2>Welcome <span>Back</span></h2>
+
+    <form id="loginForm">
+      <div>
+        <label>Email</label>
+        <input name="email" type="email" required autocomplete="email">
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input name="password" type="password" required
+          autocomplete="current-password">
+      </div>
+
+      <button class="gold" type="submit">Log In</button>
+      <div id="loginStatus" class="status" role="status"></div>
+    </form>
+  </div>
 </section>
 
-<section id="photos" class="section hidden">
-<div class="wrap"><div class="box">
-<h2>Upload profile photos</h2>
-<p class="muted">Photo upload is disabled until a private storage bucket and secure policies are configured.</p>
-<div class="status" style="display:block">Photo uploads are not active yet. Do not upload identity documents here.</div>
-</div></div>
+<section id="accountSection" class="hidden">
+  <div class="formbox">
+    <h2>You're <span>Signed In!</span></h2>
+    <p id="accountEmail" class="muted"></p>
+    <p class="muted">
+      Your account is connected. Public profiles, secure photo uploads,
+      identity verification, bookings and payments are not yet activated.
+    </p>
+  </div>
 </section>
 
-<footer class="footer">
-<div class="wrap">© 2026 VELORA · Meet. Connect. Experience.
-<p>Starter project, not yet production-ready. Payments, ID verification, profile moderation, messaging, and secure photo storage still need to be connected before launch. Adults 18+ only.</p>
-</div>
+</main>
+
+<footer>
+  © 2026 VELORA — Meet. Connect. Experience.
+  <p>Adults 18+ only. Protect your privacy and meet safely.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-/* Add your Supabase Project URL and Publishable key below. Never use a secret/service_role key here. */
-const SUPABASE_URL = "https://rsxndjabjvromjhxppjs.supabase.co/rest/v1/";
+/* VELORA SUPABASE CONNECTION */
+const SUPABASE_URL = "https://rsxndjabjvromjhxppjs.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_qhapPr8GPoGMaF495UjxIw_YC5MjAK3";
 
-let supabaseClient = null;
+let db = null;
 
-function show(id){
-document.querySelectorAll('section[id="signup"],section[id="login"],section[id="photos"]').forEach(x=>x.classList.add('hidden'));
-const el=document.getElementById(id);
-if(el){el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'start'});}
+function getClient() {
+  if (!window.supabase) {
+    throw new Error("Supabase library failed to load. Refresh the page.");
+  }
+
+  if (!db) {
+    db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+  }
+
+  return db;
 }
 
-function status(id,msg,ok=false){
-const el=document.getElementById(id);
-el.style.display='block';
-el.textContent=msg;
-el.style.background=ok?'#17291f':'#391d20';
-el.style.color=ok?'#b5f2ce':'#ffd0d0';
+const signupSection = document.getElementById("signupSection");
+const loginSection = document.getElementById("loginSection");
+const accountSection = document.getElementById("accountSection");
+
+function openSection(section) {
+  [signupSection, loginSection, accountSection].forEach(el => {
+    el.classList.add("hidden");
+  });
+
+  if (section) {
+    section.classList.remove("hidden");
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
-function client(){
-if(!window.supabase?.createClient)throw new Error('Supabase library did not load. Check internet and refresh.');
-if(SUPABASE_URL==='YOUR_SUPABASE_PROJECT_URL'||SUPABASE_PUBLISHABLE_KEY==='YOUR_SUPABASE_PUBLISHABLE_KEY')throw new Error('Setup incomplete: add your Supabase Project URL and Publishable key in the code.');
-if(!supabaseClient)supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-return supabaseClient;
+function showStatus(id, message, success = false) {
+  const el = document.getElementById(id);
+  el.style.display = "block";
+  el.style.background = success ? "#173022" : "#382020";
+  el.style.color = success ? "#b5f2ce" : "#ffd0d0";
+  el.textContent = message;
 }
 
-function authUI(user){
-document.getElementById('logoutButton').classList.toggle('hidden',!user);
-document.querySelectorAll('.top-actions button:not(#logoutButton)').forEach(b=>b.classList.toggle('hidden',!!user));
+function updateUI(user) {
+  document.getElementById("loginNav").classList.toggle("hidden", !!user);
+  document.getElementById("signupNav").classList.toggle("hidden", !!user);
+  document.getElementById("heroSignup").classList.toggle("hidden", !!user);
+  document.getElementById("logoutBtn").classList.toggle("hidden", !user);
+
+  if (user) {
+    document.getElementById("accountEmail").textContent =
+      "Signed in as " + user.email;
+    openSection(accountSection);
+  } else {
+    openSection(null);
+  }
 }
 
-document.getElementById('signupForm').addEventListener('submit',async e=>{
-e.preventDefault();
-const f=e.currentTarget,b=f.querySelector('button[type=submit]');
-b.disabled=true;
-try{
-const c=client(),d=new FormData(f);
-const name=String(d.get('name')||'').trim();
-const email=String(d.get('email')||'').trim().toLowerCase();
-const password=String(d.get('password')||'');
-const age=Number(d.get('age'));
-const role=String(d.get('role')||'find');
-const city=String(d.get('city')||'').trim();
+document.getElementById("signupNav").onclick = () =>
+  openSection(signupSection);
 
-if(age<18||age>100)throw new Error('VELORA is for adults aged 18 or older only.');
-if(password.length<12)throw new Error('Password must contain at least 12 characters.');
+document.getElementById("heroSignup").onclick = () =>
+  openSection(signupSection);
 
-status('signupStatus','Creating account…',true);
+document.getElementById("loginNav").onclick = () =>
+  openSection(loginSection);
 
-const {data,error}=await c.auth.signUp({
-email,password,
-options:{data:{full_name:name,age,role,city}}
+document.getElementById("signupForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+  const button = form.querySelector('button[type="submit"]');
+  button.disabled = true;
+
+  try {
+    const data = new FormData(form);
+    const name = String(data.get("name")).trim();
+    const email = String(data.get("email")).trim().toLowerCase();
+    const password = String(data.get("password"));
+    const age = Number(data.get("age"));
+    const role = String(data.get("role"));
+    const city = String(data.get("city") || "").trim();
+
+    if (age < 18 || age > 100) {
+      throw new Error("VELORA is only for adults aged 18 and over.");
+    }
+
+    if (password.length < 12) {
+      throw new Error("Use a password of at least 12 characters.");
+    }
+
+    showStatus("signupStatus", "Creating your account...", true);
+
+    const { data: result, error } = await getClient().auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+          age: age,
+          role: role,
+          city: city
+        }
+      }
+    });
+
+    if (error) throw error;
+
+    if (result.session) {
+      showStatus(
+        "signupStatus",
+        "Account created successfully!",
+        true
+      );
+      updateUI(result.user);
+    } else {
+      showStatus(
+        "signupStatus",
+        "Account registration started. Check your email for a confirmation link, then log in.",
+        true
+      );
+    }
+
+    form.reset();
+
+  } catch (error) {
+    showStatus(
+      "signupStatus",
+      error.message || "Signup failed. Please try again."
+    );
+  } finally {
+    button.disabled = false;
+  }
 });
 
-if(error)throw error;
+document.getElementById("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
 
-if(data.session){
-status('signupStatus','Account created and signed in. Public profiles remain disabled until profile mapping, photo review and identity verification are configured.',true);
-authUI(data.user);
-}else{
-status('signupStatus','Signup started. Check your email for a confirmation link, then log in. Public profiles remain disabled until verification and moderation are configured.',true);
-}
-f.reset();
-}catch(err){
-status('signupStatus',err.message||'Signup failed. Try again.');
-}finally{
-b.disabled=false;
-}
+  const form = e.currentTarget;
+  const button = form.querySelector('button[type="submit"]');
+  button.disabled = true;
+
+  try {
+    const data = new FormData(form);
+    const email = String(data.get("email")).trim().toLowerCase();
+    const password = String(data.get("password"));
+
+    showStatus("loginStatus", "Logging in...", true);
+
+    const { data: result, error } =
+      await getClient().auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if (error) throw error;
+
+    showStatus("loginStatus", "Login successful!", true);
+    form.reset();
+    updateUI(result.user);
+
+  } catch (error) {
+    showStatus(
+      "loginStatus",
+      error.message || "Login failed. Check your email and password."
+    );
+  } finally {
+    button.disabled = false;
+  }
 });
 
-document.getElementById('loginForm').addEventListener('submit',async e=>{
-e.preventDefault();
-const f=e.currentTarget,b=f.querySelector('button[type=submit]');
-b.disabled=true;
-try{
-const c=client(),d=new FormData(f);
-const email=String(d.get('email')||'').trim().toLowerCase();
-const password=String(d.get('password')||'');
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  try {
+    const { error } = await getClient().auth.signOut();
+    if (error) throw error;
 
-status('loginStatus','Logging in…',true);
+    updateUI(null);
+    openSection(null);
+    alert("You have logged out.");
 
-const {data,error}=await c.auth.signInWithPassword({email,password});
-if(error)throw error;
-
-status('loginStatus','Login successful. Profile discovery and bookings are not active yet.',true);
-authUI(data.user);
-f.reset();
-}catch(err){
-status('loginStatus',err.message||'Login failed. Check details and try again.');
-}finally{
-b.disabled=false;
-}
+  } catch (error) {
+    alert(error.message || "Logout failed.");
+  }
 });
 
-document.getElementById('logoutButton').addEventListener('click',async()=>{
-try{
-const {error}=await client().auth.signOut();
-if(error)throw error;
-authUI(null);
-show('login');
-status('loginStatus','You have logged out.',true);
-}catch(err){
-alert(err.message||'Could not log out.');
-}
-});
-
-(async()=>{
-try{
-const {data,error}=await client().auth.getSession();
-if(!error)authUI(data.session?.user||null);
-}catch(_){}
+(async function restoreSession() {
+  try {
+    const { data, error } = await getClient().auth.getSession();
+    if (!error) updateUI(data.session ? data.session.user : null);
+  } catch (error) {
+    console.error("Supabase initialization failed:", error);
+  }
 })();
 </script>
+
 </body>
   </html>
