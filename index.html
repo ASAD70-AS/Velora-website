@@ -1056,7 +1056,6 @@ async function loadVerifiedProfiles() {
       .from("profiles")
       .select("id, display_name, age, city, role, category, bio")
       .eq("verification_status", "verified")
-      .neq("id", currentUser.id)
       .order("display_name");
 
     if (error) throw error;
