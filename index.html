@@ -1068,8 +1068,11 @@ async function loadVerifiedProfiles() {
     for (const profile of data) {
       const card = document.createElement("article");
       card.className = "profile-card";
+      let photoUrl = "";
 
+try { const { data: photoData, error: photoError } = await db .from("profile_photos") .select("photo_path") .eq("user_id", profile.id) .order("created_at", { ascending: true }) .limit(1); if (photoError) console.warn(photoError.message); if (photoData?.length) { const { data: signedPhoto, error: signedError } = await db.storage .from(PHOTO_BUCKET) .createSignedUrl(photoData[0].photo_path, 3600); if (!signedError && signedPhoto?.signedUrl) { photoUrl = signedPhoto.signedUrl; } } } catch (err) { console.warn("Photo unavailable:", err); } 
       card.innerHTML = `
+      <img class="profile-photo" src="${escapeHtml(photoUrl)}" alt="Profile photo" loading="lazy">
         <div class="content">
           <span class="status">Verified</span>
           <h3>${escapeHtml(profile.display_name)}, ${escapeHtml(profile.age)}</h3>
